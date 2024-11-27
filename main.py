@@ -29,6 +29,8 @@ def link_crawling():
             find_field.click()
             find_field.send_keys(article)
             find_field.send_keys(Keys.ENTER)
+            #time.sleep(3)
+
             h1_text = driver.find_element(By.ID, 'pagetitle').text
 
             link_crawling_list_row.append(h1_text)
@@ -45,9 +47,10 @@ def link_crawling():
                 link_crawling_list.append(link_crawling_list_row)
                 print(ex)
                 driver.get(url=zavodpt_link)
+                #time.sleep(1)
                 continue
-
-    with open('test.csv', 'w') as f:
+        
+    with open('result.csv', 'w') as f:
         writer = csv.writer(f, delimiter=';', lineterminator='\n')
         for item in link_crawling_list:
             writer.writerow(item)
